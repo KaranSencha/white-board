@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>White Board</title>
+    <link rel="shortcut icon" href="favicon-32x32.png" type="image/x-icon">
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Style sheet -->
+    <link rel="stylesheet" href="whiteBoard.css" />
+
+    <!-- Google Font  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <main>
+      <!-- White Board  -->
+      <div class="white-board">
+        <canvas id="drawingCanvas"></canvas>
+
+        <!-- Zoom Box -->
+        <div class="zoom-box">
+          <!-- minus icon  -->
+          <div class="icon">
+            <i class="fa-solid fa-minus"></i>
+          </div>
+          <div class="number">100%</div>
+
+          <div class="icon">
+            <!-- plus icon  -->
+            <i class="fa-solid fa-plus"></i>
+          </div>
+        </div>
+      </div>
+
+
+      <!--  Menu  -->
+      <div class="menu">
+        <!-- cursor icon  -->      
+        <div>
+          <i class="fa-solid fa-arrow-pointer"></i>
+          <span class="tooltip">cursor</span>
+        </div>
+
+        <!-- Pen icon  -->
+        <div>
+          <i class="fa-solid fa-pencil"></i>
+          <span class="tooltip">Pensil</span>
+        </div>
+
+        <!-- Text icon  -->
+        <div>
+          <i class="fa-solid fa-font"></i>
+          <span class="tooltip">Text</span>
+        </div>
+
+        <!-- Shape icon  -->
+        <div>
+          <i class="fa-solid fa-shapes"></i>
+          <span class="tooltip">Shapes</span>
+        </div>
+
+        <!-- Erasor icon  -->
+        <div>
+          <i class="fa-solid fa-eraser"></i>
+          <span class="tooltip">Erasor</span>
+        </div>
+
+        <!-- Save icon  -->
+        <div>
+          <i class="fa-solid fa-download"></i>
+          <span class="tooltip">Save White Board</span>
+        </div>
+
+        <!-- Delete Icon  -->
+        <div>
+          <i class="fa-solid fa-trash-can"></i>
+          <span class="tooltip">Delete All</span>
+        </div>
+
+        <!-- fill icon  -->
+        <div>
+          <i class="fa-solid fa-paint-roller"></i>
+          <span class="tooltip">Fill color</span>
+        </div>
+      </div>
+    </main>
+
+    <!-- Java Script -->
+    <script src="whiteBoard.js"></script>
+  </body>
+</html>
