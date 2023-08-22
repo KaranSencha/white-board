@@ -31,6 +31,7 @@ body {
 	--red: #dc3545;
 	--black: #111;
 	--theme-bg: rgb(17, 24, 39);
+	--theme-bg2: #212529;
 }
 
 main {
@@ -43,15 +44,23 @@ main {
 .white-board {
 	width: calc(100% - 80px);
 	height: 100%;
-	background-color: var(--darkgray);
+	background-color: var(--theme-bg2);
+	padding: 0;
+	overflow: hidden;
 }
+
+
+canvas {
+	display: block;
+}
+
 
 .menu {
 	display: flex;
 	flex-direction: column;
 	width: 80px;
 	height: 100%;
-	background-color: var(--lightgray1);
+	background-color: var(--darkgray);
 }
 
 .menu div {
@@ -67,11 +76,12 @@ main {
 .menu i {
 	font-size: 1.5rem;
 	transition: all 0.3s linear;
+	color: var(--lightgray4);
 }
 
 .menu div:hover>i {
 	color: var(--green);
-	font-size: 1.7rem;
+	font-size: 1.6rem;
 }
 
 
@@ -86,7 +96,7 @@ main {
 	position: fixed;
 	left: 90px;
 	opacity: 0;
-	transition: opacity 1s ;
+	transition: opacity 1s;
 }
 
 .menu div:hover>.tooltip {
@@ -95,11 +105,10 @@ main {
 }
 
 
-
-
-/* Zoom Box  */
+/* Zoom Box - FIX */
 .zoom-box {
 	display: flex;
+	display: none;
 	font-size: 1.3rem;
 	width: 200px;
 	height: 47px;
@@ -131,4 +140,11 @@ main {
 
 .zoom-box .icon:hover {
 	opacity: 1;
+}
+
+input {
+	border: none;
+	padding: 0;
+	margin:0;
+	background-color: var(--darkgray);
 }

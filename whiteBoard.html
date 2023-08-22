@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>White Board</title>
-    <link rel="shortcut icon" href="favicon-32x32.png" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon-32x32.png" type="image/x-icon" />
 
     <link
       rel="stylesheet"
@@ -30,7 +30,7 @@
     <main>
       <!-- White Board  -->
       <div class="white-board">
-        <canvas id="drawingCanvas"></canvas>
+        <canvas id="canvasSelect"></canvas>
 
         <!-- Zoom Box -->
         <div class="zoom-box">
@@ -47,55 +47,66 @@
         </div>
       </div>
 
-
       <!--  Menu  -->
       <div class="menu">
-        <!-- cursor icon  -->      
-        <div>
+        <!-- cursor icon  -->
+        <div id="cursorSelect">
           <i class="fa-solid fa-arrow-pointer"></i>
           <span class="tooltip">cursor</span>
         </div>
 
         <!-- Pen icon  -->
-        <div>
+        <div id="penSelect">
           <i class="fa-solid fa-pencil"></i>
           <span class="tooltip">Pensil</span>
         </div>
 
         <!-- Text icon  -->
-        <div>
+        <div id="textSelect">
           <i class="fa-solid fa-font"></i>
           <span class="tooltip">Text</span>
         </div>
 
         <!-- Shape icon  -->
-        <div>
+        <div id="shapeSelect">
           <i class="fa-solid fa-shapes"></i>
           <span class="tooltip">Shapes</span>
         </div>
 
+        <!-- Undo Icon  -->
+        <div id="undoSelect">
+           <i class="fa-solid fa-rotate-left"></i>
+           <span class="tooltip">Undo</span>
+          </div>
+          
+          <!-- Redo icon  -->
+          <div id="redoSelect">
+          <i class="fa-solid fa-rotate-right"></i>
+          <span class="tooltip">Redo</span>
+        </div>
+
         <!-- Erasor icon  -->
-        <div>
+        <div id="erasorSelect">
           <i class="fa-solid fa-eraser"></i>
           <span class="tooltip">Erasor</span>
         </div>
 
         <!-- Save icon  -->
-        <div>
+        <div id="saveSelect">
           <i class="fa-solid fa-download"></i>
           <span class="tooltip">Save White Board</span>
         </div>
 
         <!-- Delete Icon  -->
-        <div>
+        <div id="deleteSelect">
           <i class="fa-solid fa-trash-can"></i>
           <span class="tooltip">Delete All</span>
         </div>
 
-        <!-- fill icon  -->
-        <div>
-          <i class="fa-solid fa-paint-roller"></i>
-          <span class="tooltip">Fill color</span>
+        <!-- Color icon  -->
+        <div id="fillSelect">
+          <input type="color" value="#333333" id="colorSelect">
+          <span class="tooltip">Pen color</span>
         </div>
       </div>
     </main>
