@@ -1,4 +1,5 @@
-// Constant Variable - all icons
+// Constant Variable
+// menu icons
 const cursorButton = document.getElementById("cursorSelect");
 const penButton = document.getElementById("penSelect");
 const textButton = document.getElementById("textSelect");
@@ -9,10 +10,12 @@ const erasorButton = document.getElementById("erasorSelect");
 const saveButton = document.getElementById("saveSelect");
 const deleteAllButton = document.getElementById("deleteSelect");
 const colorButton = document.getElementById("colorSelect");
-// FIX
-// const zoomInButton = document.getElementById("");
-// const zoomOutButton = document.getElementById("");
 
+// zoom icons
+const zoomInButton = document.getElementById("zoomInSelect");
+const zoomOutButton = document.getElementById("zoomOutSelect");
+
+// canvas
 const canvas = document.getElementById("canvasSelect");
 const ctx = canvas.getContext("2d");
 
@@ -21,13 +24,14 @@ canvas.height = window.innerHeight;
 ctx.lineWidth = 5;
 
 // let Variable
-let lineWidth = 3;
+let lineWidth = 5;
 let isDrawing = false;
 let isErasing = false;
 let lastX = 0;
 let lastY = 0;
 let currentColor = "#e1e1e1";
 let eraserSize = 10;
+let erasorColor = "#212529";
 let undoStack = [];
 let redoStack = [];
 let actionStack = [];
@@ -37,12 +41,14 @@ let points = [];
 // Stop Drawing Function
 function stopDrawing() {
   isDrawing = false;
+  canvas.style.cursor = "default";
 }
 
 // Start Drawing Function
 function startDrawing(e) {
-  isDrawing = true; 
-  
+  isDrawing = true;
+
+  canvas.style.cursor = "crosshair";
   [lastX, lastY] = [
     e.clientX - canvas.offsetLeft,
     e.clientY - canvas.offsetTop,
@@ -70,11 +76,13 @@ function redo() {
 function toggleEraser() {
   isErasing = !isErasing;
   if (isErasing) {
-    ctx.strokeStyle = "rgba(0, 0, 0, 0)";
+    ctx.strokeStyle = erasorColor;
     ctx.lineWidth = eraserSize;
+    canvas.style.cursor = "grab";
   } else {
     ctx.strokeStyle = currentColor;
-    // ctx.lineWidth = document.getElementById("lineSizeSlider").value;
+    ctx.lineWidth = 5;
+    canvas.style.cursor = "crosshair";
   }
 }
 
@@ -113,14 +121,13 @@ function drawLine(e) {
     ctx.beginPath();
     ctx.moveTo(prevPoint.x, prevPoint.y);
     ctx.lineTo(currentPoint.x, currentPoint.y);
-    ctx.strokeStyle = isErasing ? "rgba(0, 0, 0, 0)" : currentColor;
+    ctx.strokeStyle = isErasing ? erasorColor : currentColor;
     ctx.lineWidth = isErasing ? eraserSize : ctx.lineWidth;
     ctx.stroke();
   }
   undoStack.push(ctx.getImageData(0, 0, canvas.width, canvas.height));
   redoStack = [];
 }
-
 
 function drawLine(e) {
   if (!isDrawing) return;
@@ -129,7 +136,7 @@ function drawLine(e) {
   ctx.beginPath();
   ctx.moveTo(lastX, lastY);
   ctx.lineTo(x, y);
-  ctx.strokeStyle = isErasing ? "rgba(0, 0, 0, 0)" : currentColor;
+  ctx.strokeStyle = isErasing ? erasorColor : currentColor;
   ctx.lineWidth = isErasing ? eraserSize : ctx.lineWidth;
   ctx.stroke();
 
@@ -139,13 +146,25 @@ function drawLine(e) {
   [lastX, lastY] = [x, y];
 }
 
+// ZoomIn function
+function zoomIn() {
+  canvas.style.transformOrigin = "0 0"; // Set the origin of scaling
+  canvas.style.transform = `scale(1.1)`; // Increase the scale (zoom in)
+}
+
+// Zoom out Function
+function zoomOut() {
+  canvas.style.transformOrigin = "0 0"; // Set the origin of scaling
+  canvas.style.transform = `scale(0.9)`; // Decrease the scale (zoom out)
+}
+
 // SECTION  - addEventListener
-// addEventListener to cursor
+//  cursor
 canvas.addEventListener("mousedown", startDrawing);
 canvas.addEventListener("mousemove", drawLine);
 canvas.addEventListener("mouseup", stopDrawing);
 
-// Add event listener to icons button
+// menu icons
 cursorButton.addEventListener("click", () => {
   canvas.removeEventListener("mousedown", startDrawing);
   canvas.removeEventListener("mousemove", drawLine);
@@ -164,6 +183,6 @@ saveButton.addEventListener("click", saveAll);
 deleteAllButton.addEventListener("click", clearAll);
 colorButton.addEventListener("input", updateColor);
 
-// FIX  - functions
-// zoomInButton.addEventListener("click", zoomIn);
-// zoomOutButton.addEventListener("click", zoomOut);
+// zoom icon
+zoomInButton.addEventListener("click", zoomIn);
+zoomOutButton.addEventListener("click", zoomOut);

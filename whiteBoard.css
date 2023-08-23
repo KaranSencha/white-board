@@ -26,6 +26,7 @@ body {
 	--pink: #d63384;
 	--purple: #6610f2;
 	--primary: #0d6efd;
+	--transparent:#ffffff00;
 	--green: #198754;
 	--orange: #fd7e14;
 	--red: #dc3545;
@@ -108,10 +109,10 @@ canvas {
 /* Zoom Box - FIX */
 .zoom-box {
 	display: flex;
-	display: none;
-	font-size: 1.3rem;
-	width: 200px;
-	height: 47px;
+	/* display: none; */
+	font-size: 1.2rem;
+	width: 170px;
+	height: 40px;
 	border-radius: 0.4rem;
 	position: fixed;
 	bottom: 5%;
@@ -120,8 +121,7 @@ canvas {
 }
 
 .zoom-box .number {
-	width: 40%;
-	font-weight: 500;
+	width: 50%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -130,7 +130,7 @@ canvas {
 }
 
 .zoom-box .icon {
-	width: 30%;
+	width: 25%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -140,6 +140,9 @@ canvas {
 
 .zoom-box .icon:hover {
 	opacity: 1;
+}
+.zoom-box .icon:active {
+	font-size: 1.1rem;
 }
 
 input {
