@@ -18,15 +18,16 @@ const ctx = canvas.getContext("2d");
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
+ctx.lineWidth = 5;
 
 // let Variable
-let lineWidth = 20;
+let lineWidth = 3;
 let isDrawing = false;
 let isErasing = false;
 let lastX = 0;
 let lastY = 0;
-let currentColor = "#000000";
-let eraserSize = 30;
+let currentColor = "#e1e1e1";
+let eraserSize = 10;
 let undoStack = [];
 let redoStack = [];
 let actionStack = [];
@@ -40,7 +41,8 @@ function stopDrawing() {
 
 // Start Drawing Function
 function startDrawing(e) {
-  isDrawing = true;
+  isDrawing = true; 
+  
   [lastX, lastY] = [
     e.clientX - canvas.offsetLeft,
     e.clientY - canvas.offsetTop,
