@@ -18,19 +18,22 @@ const zoomOutButton = document.getElementById("zoomOutSelect");
 // canvas
 const canvas = document.getElementById("canvasSelect");
 const ctx = canvas.getContext("2d");
+ctx.lineJoin = "round";
+ctx.lineCap = "round";
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
-ctx.lineWidth = 5;
+ctx.lineWidth = 28;
+
 
 // let Variable
-let lineWidth = 5;
+let lineWidth = 30;
 let isDrawing = false;
 let isErasing = false;
 let lastX = 0;
 let lastY = 0;
 let currentColor = "#e1e1e1";
-let eraserSize = 10;
+let eraserSize = 15;
 let erasorColor = "#212529";
 let undoStack = [];
 let redoStack = [];
@@ -47,8 +50,7 @@ function stopDrawing() {
 // Start Drawing Function
 function startDrawing(e) {
   isDrawing = true;
-
-  canvas.style.cursor = "crosshair";
+  ctx.strokeStyle = currentColor;
   [lastX, lastY] = [
     e.clientX - canvas.offsetLeft,
     e.clientY - canvas.offsetTop,
@@ -78,11 +80,9 @@ function toggleEraser() {
   if (isErasing) {
     ctx.strokeStyle = erasorColor;
     ctx.lineWidth = eraserSize;
-    canvas.style.cursor = "grab";
   } else {
     ctx.strokeStyle = currentColor;
-    ctx.lineWidth = 5;
-    canvas.style.cursor = "crosshair";
+    ctx.lineWidth = lineWidth;
   }
 }
 
@@ -104,42 +104,35 @@ function clearAll() {
   actionStack = [];
 }
 
-// draw line - function
-function drawLine(e) {
-  if (!isDrawing) return;
+function drawSmoothLine(points) {
+  if (points.length < 2) return;
 
-  const x = e.clientX - canvas.offsetLeft;
-  const y = e.clientY - canvas.offsetTop;
+  ctx.beginPath();
+  ctx.moveTo(points[0].x, points[0].y);
 
-  points.push({ x, y }); // Store the current point
-
-  ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear canvas
-
-  for (let i = 1; i < points.length; i++) {
-    const prevPoint = points[i - 1];
-    const currentPoint = points[i];
-    ctx.beginPath();
-    ctx.moveTo(prevPoint.x, prevPoint.y);
-    ctx.lineTo(currentPoint.x, currentPoint.y);
-    ctx.strokeStyle = isErasing ? erasorColor : currentColor;
-    ctx.lineWidth = isErasing ? eraserSize : ctx.lineWidth;
-    ctx.stroke();
+  for (let i = 1; i < points.length - 2; i++) {
+    const xc = (points[i].x + points[i + 1].x) / 2;
+    const yc = (points[i].y + points[i + 1].y) / 2;
+    ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
   }
-  undoStack.push(ctx.getImageData(0, 0, canvas.width, canvas.height));
-  redoStack = [];
+
+  ctx.lineTo(points[points.length - 1].x, points[points.length - 1].y);
+  ctx.stroke();
 }
 
+// drawline - function
 function drawLine(e) {
   if (!isDrawing) return;
+
   const x = e.clientX - canvas.offsetLeft;
   const y = e.clientY - canvas.offsetTop;
-  ctx.beginPath();
-  ctx.moveTo(lastX, lastY);
-  ctx.lineTo(x, y);
-  ctx.strokeStyle = isErasing ? erasorColor : currentColor;
-  ctx.lineWidth = isErasing ? eraserSize : ctx.lineWidth;
-  ctx.stroke();
 
+  points.push({ x, y });
+
+  // call - smoothline function
+  drawSmoothLine(points);
+
+  // undo & redo
   undoStack.push(ctx.getImageData(0, 0, canvas.width, canvas.height));
   redoStack = [];
 
@@ -148,21 +141,22 @@ function drawLine(e) {
 
 // ZoomIn function
 function zoomIn() {
-  canvas.style.transformOrigin = "0 0"; // Set the origin of scaling
-  canvas.style.transform = `scale(1.1)`; // Increase the scale (zoom in)
+  alert("Zoom In");
 }
 
 // Zoom out Function
 function zoomOut() {
-  canvas.style.transformOrigin = "0 0"; // Set the origin of scaling
-  canvas.style.transform = `scale(0.9)`; // Decrease the scale (zoom out)
+  alert("Zoom Out");
 }
 
 // SECTION  - addEventListener
 //  cursor
 canvas.addEventListener("mousedown", startDrawing);
 canvas.addEventListener("mousemove", drawLine);
-canvas.addEventListener("mouseup", stopDrawing);
+canvas.addEventListener("mouseup", function () {
+  stopDrawing();
+  points = [];
+});
 
 // menu icons
 cursorButton.addEventListener("click", () => {
