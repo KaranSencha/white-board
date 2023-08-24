@@ -10,6 +10,13 @@ const erasorButton = document.getElementById("erasorSelect");
 const saveButton = document.getElementById("saveSelect");
 const deleteAllButton = document.getElementById("deleteSelect");
 const colorButton = document.getElementById("colorSelect");
+const penSizeButton = document.getElementById("penSizeSelect");
+const closeButton = document.querySelectorAll(".closeIconSelect");
+const penSideBar = document.getElementById("bothElement");
+const penCloseButton = document.getElementById("penCloseSelect");
+const shapeSideBar = document.getElementById("shapeSideBarSelect");
+
+
 
 // zoom icons
 const zoomInButton = document.getElementById("zoomInSelect");
@@ -27,12 +34,12 @@ ctx.lineWidth = 28;
 
 
 // let Variable
-let lineWidth = 30;
 let isDrawing = false;
 let isErasing = false;
 let lastX = 0;
 let lastY = 0;
-let currentColor = "#e1e1e1";
+let currentColor = "#e1e1e1"; 
+let lineWidth = 3;
 let eraserSize = 15;
 let erasorColor = "#212529";
 let undoStack = [];
@@ -51,6 +58,8 @@ function stopDrawing() {
 function startDrawing(e) {
   isDrawing = true;
   ctx.strokeStyle = currentColor;
+  ctx.lineWidth = lineWidth;
+  canvas.style.cursor = "crosshair";
   [lastX, lastY] = [
     e.clientX - canvas.offsetLeft,
     e.clientY - canvas.offsetTop,
@@ -82,7 +91,7 @@ function toggleEraser() {
     ctx.lineWidth = eraserSize;
   } else {
     ctx.strokeStyle = currentColor;
-    ctx.lineWidth = lineWidth;
+        ctx.lineWidth = lineWidth;
   }
 }
 
@@ -94,6 +103,11 @@ function saveAll() {
 // updateColor - function
 function updateColor(e) {
   currentColor = e.target.value;
+}
+
+// updatePenSize - function
+function updatePenSize(e) {
+  lineWidth = e.target.value;
 }
 
 // delete all - function
@@ -176,7 +190,27 @@ erasorButton.addEventListener("click", toggleEraser);
 saveButton.addEventListener("click", saveAll);
 deleteAllButton.addEventListener("click", clearAll);
 colorButton.addEventListener("input", updateColor);
+penSizeButton.addEventListener("input", updatePenSize);
 
 // zoom icon
 zoomInButton.addEventListener("click", zoomIn);
 zoomOutButton.addEventListener("click", zoomOut);
+
+
+// close pen side bar
+penCloseButton.addEventListener("click", function () {
+  penSideBar.classList.toggle("hidden");
+});
+
+// stop to to parent when child is clicked
+penSideBar.addEventListener("click", function (event) {
+  event.stopPropagation();
+})
+penButton.addEventListener("click", function () {
+   penSideBar.classList.toggle("hidden");
+ });
+
+// close shape side bar
+shapeButton.addEventListener("click", function () {
+  shapeSideBar.classList.toggle("hidden");
+})

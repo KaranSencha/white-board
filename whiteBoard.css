@@ -1,18 +1,12 @@
 * {
 	margin: 0;
 	box-sizing: border-box;
-	overflow: hidden;
-}
-
-html {
-	scroll-behavior: smooth;
 }
 
 body {
 	font-family: 'Poppins', sans-serif;
 	height: 100%;
 	width: 100%;
-	line-height: 1.5;
 }
 
 :root {
@@ -26,7 +20,7 @@ body {
 	--pink: #d63384;
 	--purple: #6610f2;
 	--primary: #0d6efd;
-	--transparent:#ffffff00;
+	--transparent: #ffffff00;
 	--green: #198754;
 	--orange: #fd7e14;
 	--red: #dc3545;
@@ -56,6 +50,7 @@ canvas {
 }
 
 
+/* icons  */
 .menu {
 	display: flex;
 	flex-direction: column;
@@ -70,7 +65,6 @@ canvas {
 	justify-content: center;
 	width: 100%;
 	height: 100px;
-	position: relative;
 	cursor: pointer;
 }
 
@@ -94,7 +88,7 @@ canvas {
 	color: var(--lightgray2);
 	border-radius: 6px;
 	padding: 10px 20px;
-	position: fixed;
+	position: absolute;
 	left: 90px;
 	opacity: 0;
 	transition: opacity 1s;
@@ -105,32 +99,120 @@ canvas {
 	opacity: 1;
 }
 
+#penSelect,
+#shapeSelect {
+	display: flex;
+	position: relative;
+}
+
+#bothElement {
+	flex-direction: row;
+	width: 170px;
+	border-radius: 4px;
+	height: auto;
+	align-items: unset;
+	position: absolute;
+	left: 90px;
+	top: 0;
+}
+
+.menu .side-bar-pen {
+	flex-direction: column;
+	background-color: var(--lightgray4);
+	border-radius: 4px;
+	height: auto;
+	padding: 5px 0;
+}
+
+.menu .side-bar-pen .icon {
+	padding: 15px;
+}
+
+
+.side-bar-pen i {
+	color: var(--darkgray);
+}
+
+.menu .side-bar-size {
+	height: auto;
+	padding-top: 70px;
+	background-color: var(--green);
+	border-radius: 4px;
+}
+
+.side-bar-size input {
+	transform: rotate(-90deg);
+	background-color: #ddd;
+	appearance: none;
+	height: 12px;
+	width: 200px ;
+	position: absolute;
+	border-radius: 5px;
+}
+
+
+.side-bar-size input::-webkit-slider-thumb {
+	appearance: none;
+	background-color: #04AA6D;
+	width: 12px;
+	height: 25px;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+
+
+/* side bar shape  */
+.menu .side-bar-shape {
+	flex-wrap: wrap;
+	width: 200px;
+	gap: 10px;
+	background-color: var(--lightgray4);
+	border-radius: 4px;
+	height: auto;
+	padding: 5px 0;
+	position: absolute;
+	left: 90px;
+	top: 0;
+}
+
+.menu .side-bar-shape .icon {
+	padding: 10px 15px;
+}
+
+.side-bar-shape .icon:hover {
+	border-radius: 4px;
+	background-color: var(--gray);
+}
+
+.side-bar-shape i {
+	color: var(--darkgray);
+}
 
 /* Zoom Box - FIX */
 .zoom-box {
 	display: flex;
-	display: none;
-	font-size: 1.2rem;
-	width: 170px;
-	height: 40px;
+	/* display: none; */
+	font-size: 1.3rem;
+	width: 200px;
+	height: 45px;
 	border-radius: 0.4rem;
 	position: fixed;
-	bottom: 5%;
-	right: 5%;
+	bottom: 2%;
+	right: 3%;
+	padding: 3px 4px;
 	background-color: var(--lightgray1);
 }
 
 .zoom-box .number {
-	width: 50%;
+	width: 40%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	border-left: 2px solid var(--gray);
-	border-right: 2px solid var(--gray);
 }
 
 .zoom-box .icon {
-	width: 25%;
+	width: 20%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -138,16 +220,26 @@ canvas {
 	opacity: 0.7;
 }
 
-.zoom-box .icon:hover {
+.zoom-box .icon:hover,
+.zoom-box .number:hover {
 	opacity: 1;
-}
-.zoom-box .icon:active {
-	font-size: 1.1rem;
+	background-color: var(--lightgray4);
+	border-radius: 4px;
 }
 
-input {
+.zoom-box .icon:active {
+	font-size: 1.2rem;
+}
+
+input[type="color"] {
+	border-radius: 50%;
 	border: none;
-	padding: 0;
-	margin:0;
-	background-color: var(--darkgray);
+	width: 30px;
+	height: 30px;
+	padding: 5px;
+}
+
+/*  Hidden class for all element  */
+.hidden {
+	display: none !important;
 }

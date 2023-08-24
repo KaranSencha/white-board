@@ -44,6 +44,11 @@
             <!-- plus icon  -->
             <i class="fa-solid fa-plus"></i>
           </div>
+
+          <div class="icon" id="zoomOutSelect">
+            <!-- default icon  -->
+            <i class="fa-solid fa-expand"></i>
+          </div>
         </div>
       </div>
 
@@ -56,9 +61,34 @@
         </div>
 
         <!-- Pen icon  -->
-        <div id="penSelect">
+        <div id="penSelect" class="openSideBar">
           <i class="fa-solid fa-pencil"></i>
           <span class="tooltip">Pensil</span>
+
+          <!-- side bar pen -->
+          <div id="bothElement" class="hidden" id="penSideBarSelect">
+            <div class="side-bar side-bar-pen">
+              <span class="icon" id="penCloseSelect">
+                <i class="fa-solid fa-xmark"></i>
+              </span>
+
+              <span class="icon">
+                <i class="fa-solid fa-pen"></i>
+              </span>
+              <span class="icon">
+                <i class="fa-solid fa-highlighter"></i>
+              </span>
+              <span class="icon">
+                <i class="fa-regular fa-circle"></i>
+              </span>
+              <span class="icon">
+                <i class="fa-regular fa-circle"></i>
+              </span>
+            </div>
+            <div class="side-bar-size" id="penSizeSelect">
+              <input type="range" min="2" val="5" max="30" id="" />
+            </div>
+          </div>
         </div>
 
         <!-- Text icon  -->
@@ -71,16 +101,67 @@
         <div id="shapeSelect">
           <i class="fa-solid fa-shapes"></i>
           <span class="tooltip">Shapes</span>
+
+          <!-- side bar - shapes -->
+          <div class="side-bar side-bar-shape hidden" id="shapeSideBarSelect">
+
+            <!-- drag experiment  -->
+<div id="draggable">
+  Drag me
+  <div id="resize-handle"></div>
+</div>
+
+
+            <!-- square -->
+            <span class="icon">
+              <i class="fa-regular fa-square"></i>
+            </span>
+
+            <!-- message  -->
+            <span class="icon">
+              <i class="fa-regular fa-message"></i>
+            </span>
+
+            <!-- triangle  -->
+            <span class="icon">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+            </span>
+
+            <!-- line -->
+            <span class="icon">
+              <i class="fa-regular fa-circle"></i>
+            </span>
+
+            <!-- arrow 1 side -->
+            <span class="icon">
+              <i class="fa-solid fa-arrow-up"></i>
+            </span>
+
+            <!-- array double -->
+            <span class="icon">
+              <i class="fa-solid fa-arrows-left-right"></i>
+            </span>
+
+            <!-- circle -->
+            <span class="icon">
+              <i class="fa-regular fa-circle"></i>
+            </span>
+
+            <!-- star -->
+            <span class="icon">
+              <i class="fa-regular fa-star"></i>
+            </span>
+          </div>
         </div>
 
         <!-- Undo Icon  -->
         <div id="undoSelect">
-           <i class="fa-solid fa-rotate-left"></i>
-           <span class="tooltip">Undo</span>
-          </div>
-          
-          <!-- Redo icon  -->
-          <div id="redoSelect">
+          <i class="fa-solid fa-rotate-left"></i>
+          <span class="tooltip">Undo</span>
+        </div>
+
+        <!-- Redo icon  -->
+        <div id="redoSelect">
           <i class="fa-solid fa-rotate-right"></i>
           <span class="tooltip">Redo</span>
         </div>
@@ -105,7 +186,7 @@
 
         <!-- Color icon  -->
         <div id="fillSelect">
-          <input type="color" value="#333333" id="colorSelect">
+          <input type="color" value="#333333" id="colorSelect" />
           <span class="tooltip">Pen color</span>
         </div>
       </div>
