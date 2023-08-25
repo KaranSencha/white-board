@@ -36,7 +36,7 @@ let isErasing = false;
 let lastX = 0;
 let lastY = 0;
 let currentColor = "#e1e1e1";
-let lineWidth = 3;
+let lineWidth = 5;
 let erasorSize = 20;
 let erasorColor = "#212529";
 let undoStack = [];
@@ -107,6 +107,7 @@ function updateColor(e) {
 // updatePenSize - function
 function updatePenSize(e) {
   lineWidth = e.target.value;
+  document.getElementById("penSizeRange").textContent = lineWidth;
 }
 
 // delete all - function
@@ -192,9 +193,9 @@ deleteAllButton.addEventListener("click", clearAll);
 colorButton.addEventListener("input", updateColor);
 penSizeButton.addEventListener("input", updatePenSize);
 
-// zoom icon
-zoomInButton.addEventListener("click", zoomIn);
-zoomOutButton.addEventListener("click", zoomOut);
+// zoom icon FIX 
+// zoomInButton.addEventListener("click", zoomIn);
+// zoomOutButton.addEventListener("click", zoomOut);
 
 // close pen side bar
 penCloseButton.addEventListener("click", function () {
@@ -213,3 +214,32 @@ penButton.addEventListener("click", function () {
 shapeButton.addEventListener("click", function () {
   shapeSideBar.classList.toggle("hidden");
 });
+
+
+
+// background color change
+ const bgColors = document.querySelectorAll(".bg-color");
+
+ bgColors.forEach((bgColor) => {
+   bgColor.addEventListener("click", () => {
+     const iElement = bgColor.querySelector("i");
+     const color = iElement.style.color;
+     canvas.style.backgroundColor = color;
+   });
+ });
+
+
+ // grid view change
+ 
+ const grids= ["grid", "grid-line-v", "grid-line-h"]; 
+ let gridIndex = 0;
+ 
+ const bgGrids = document.querySelectorAll(".bg-grid");
+
+     bgGrids.forEach((span) => {
+       span.addEventListener("click", () => {
+         const selectedGrid = grids[gridIndex % grids.length];
+         gridIndex++;
+         canvas.classList.toggle(selectedGrid);
+       });
+     });

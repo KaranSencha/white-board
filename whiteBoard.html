@@ -68,25 +68,36 @@
           <!-- side bar pen -->
           <div id="bothElement" class="hidden" id="penSideBarSelect">
             <div class="side-bar side-bar-pen">
+              <!-- close  -->
               <span class="icon" id="penCloseSelect">
                 <i class="fa-solid fa-xmark"></i>
               </span>
 
+              <!-- pen  -->
               <span class="icon">
                 <i class="fa-solid fa-pen"></i>
               </span>
+
+              <!-- highlighter  -->
               <span class="icon">
                 <i class="fa-solid fa-highlighter"></i>
               </span>
+
+              <!-- color  -->
               <span class="icon">
                 <i class="fa-regular fa-circle"></i>
               </span>
-              <span class="icon">
-                <i class="fa-regular fa-circle"></i>
+
+              <!-- color  -->
+              <span id="fillSelect" class="icon">
+                <input type="color" value="#333333" id="colorSelect" />
               </span>
             </div>
+
+            <!-- size selector  -->
             <div class="side-bar-size" id="penSizeSelect">
-              <input type="range" min="2" val="5" max="30" id="" />
+              <input type="range" min="1" value="5" max="30" id="" />
+              <div id="penSizeRange">5</div>
             </div>
           </div>
         </div>
@@ -105,10 +116,10 @@
           <!-- side bar - shapes -->
           <div class="side-bar side-bar-shape hidden" id="shapeSideBarSelect">
             <!-- drag experiment  -->
-            <div id="draggable">
+            <!-- <div id="draggable">
               Drag me
               <div id="resize-handle"></div>
-            </div>
+            </div> -->
 
             <!-- square -->
             <span class="icon">
@@ -149,6 +160,11 @@
             <span class="icon">
               <i class="fa-regular fa-star"></i>
             </span>
+
+            <!-- arrow 1 side -->
+            <span class="icon">
+              <i class="fa-solid fa-arrow-up"></i>
+            </span>
           </div>
         </div>
 
@@ -182,10 +198,73 @@
           <span class="tooltip">Delete All</span>
         </div>
 
-        <!-- Color icon  -->
-        <div id="fillSelect">
-          <input type="color" value="#333333" id="colorSelect" />
-          <span class="tooltip">Pen color</span>
+        <!-- background icon  -->
+        <div id="backgroundSelect">
+          <i class="fa-solid fa-paint-roller"></i>
+
+          <div  class="side-bar" id="bgSideBarSelect">     
+
+              <!-- red color  -->
+              <span class="icon  bg-color">
+                <i class="fa-solid fa-circle" style="color:purple"></i>
+              </span>
+
+              <!-- blue color  -->
+              <span class="icon bg-color">
+               <i class="fa-solid fa-circle" style="color:green"></i>
+              </span>
+
+              <!-- purple color  -->
+              <span class="icon bg-color">
+                <i class="fa-solid fa-circle" style="color:orange"></i>
+              </span>
+
+              <!-- green color  -->
+              <span class="icon bg-color">
+                <i class="fa-solid fa-circle" style="color:lightblue"></i>
+              </span>          
+
+              <!-- black color  -->
+              <span class="icon bg-color">
+                <i class="fa-solid fa-circle" style="color:gray"></i>
+              </span>       
+
+              <!-- black color  -->
+              <span class="icon bg-color">
+                <i class="fa-solid fa-circle" style="color:white"></i>
+              </span>     
+                    
+              <!-- brown color  -->
+              <span class="icon bg-color">
+                <i class="fa-solid fa-circle" style="color:burlywood"></i>
+              </span>         
+
+              <!-- light yello color  -->
+              <span class="icon bg-color">
+                <i class="fa-solid fa-circle" style="color:lemonchiffon"></i>
+              </span>       
+
+              <!-- light yello color  -->
+              <span class="icon bg-color">
+                <i class="fa-solid fa-circle" style="color:crimson"></i>
+              </span>            
+
+              <!-- grid  -->
+              <span class="icon bg-grid">
+                <i class="fa-regular fa-square-full"></i>
+              </span>
+
+              <!-- grid line vetical -->
+              <span class="icon bg-grid">
+                <i class="fa-solid fa-border-none "></i>
+              </span>
+
+
+              <!-- grid line horizontal  -->
+              <span class="icon bg-grid">
+                <i class="fa-solid fa-grip-lines"></i>
+              </span>
+
         </div>
       </div>
     </main>

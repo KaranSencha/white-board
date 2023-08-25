@@ -83,44 +83,57 @@ canvas {
 /* tooltip  */
 .tooltip {
 	visibility: hidden;
+	font-size: 1.1rem;
 	width: fit-content;
-	background-color: black;
-	color: var(--lightgray2);
+	background-color: var(--lightgray1);
+	color: var(--black);
 	border-radius: 6px;
-	padding: 10px 20px;
+	padding: 8px 20px;
 	position: absolute;
 	left: 90px;
 	opacity: 0;
 	transition: opacity 1s;
 }
 
+.tooltip::after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	right: 100%;
+	margin-top: -7px;
+	border-width: 8px;
+	border-style: solid;
+	border-color: transparent var(--lightgray1) transparent transparent;
+}
 .menu div:hover>.tooltip {
 	visibility: visible;
 	opacity: 1;
 }
 
 #penSelect,
-#shapeSelect {
+#shapeSelect, #backgroundSelect {
 	display: flex;
 	position: relative;
 }
 
 #bothElement {
 	flex-direction: row;
-	width: 170px;
+	width: 140px;
 	border-radius: 4px;
 	height: auto;
 	align-items: unset;
 	position: absolute;
 	left: 90px;
+	background-color: var(--lightgray2);
 	top: 0;
 }
 
 .menu .side-bar-pen {
+	width: 55%;
 	flex-direction: column;
-	background-color: var(--lightgray4);
 	border-radius: 4px;
 	height: auto;
+	border-right: 2px solid var(--lightgray4);
 	padding: 5px 0;
 }
 
@@ -134,22 +147,21 @@ canvas {
 }
 
 .menu .side-bar-size {
+	width: 45%;
 	height: auto;
 	padding-top: 70px;
-	background-color: var(--green);
 	border-radius: 4px;
 }
 
 .side-bar-size input {
 	transform: rotate(-90deg);
-	background-color: #ddd;
+	background-color: var(--gray);
 	appearance: none;
 	height: 12px;
 	width: 200px;
 	position: absolute;
 	border-radius: 5px;
 }
-
 
 .side-bar-size input::-webkit-slider-thumb {
 	appearance: none;
@@ -160,7 +172,10 @@ canvas {
 	cursor: pointer;
 }
 
-
+#penSizeRange {
+	transform: translateY(-135%);
+	font-size: 1.4rem;
+}
 
 /* side bar shape  */
 .menu .side-bar-shape {
@@ -187,6 +202,29 @@ canvas {
 
 .side-bar-shape i {
 	color: var(--darkgray);
+}
+
+/* background side bar  */
+#bgSideBarSelect{
+	flex-wrap: wrap;
+		width: 200px;
+		gap: 10px;
+		background-color: var(--darkgray);
+		border-radius: 4px;
+		height: auto;
+		padding: 5px 0;
+		position: absolute;
+		left: 90px;
+		bottom: 10px;
+}
+
+
+#bgSideBarSelect .icon {
+	padding: 10px 15px;
+}
+
+#bgSideBarSelect i {
+		color: var(--lightgray4);
 }
 
 /* Zoom Box - FIX */
@@ -243,3 +281,21 @@ input[type="color"] {
 .hidden {
 	display: none !important;
 }
+
+/* grid class - background  */
+.grid {
+	background-image: linear-gradient(to right, black 1px, transparent 1px),
+			linear-gradient(to bottom, black 1px, transparent 1px);
+		background-size: 50px 50px;
+}
+
+.grid-line-v {
+	background-image: linear-gradient(to right, black 1px, transparent 1px);
+		background-size: 50px 100%;
+}
+
+.grid-line-h {
+	background-image: linear-gradient(to bottom, black 1px, transparent 1px);
+		background-size: 100% 50px;
+}
+
