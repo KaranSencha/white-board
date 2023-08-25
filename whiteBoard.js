@@ -1,3 +1,4 @@
+"use strict"
 // Constant Variable
 // menu icons
 const cursorButton = document.getElementById("cursorSelect");
@@ -14,6 +15,8 @@ const penSizeButton = document.getElementById("penSizeSelect");
 const closeButton = document.querySelectorAll(".closeIconSelect");
 const penSideBar = document.getElementById("bothElement");
 const penCloseButton = document.getElementById("penCloseSelect");
+const backgroundButton = document.getElementById("backgroundSelect");
+const backgroundSideBar = document.getElementById("bgSideBarSelect");
 const shapeSideBar = document.getElementById("shapeSideBarSelect");
 
 // zoom icons
@@ -193,7 +196,7 @@ deleteAllButton.addEventListener("click", clearAll);
 colorButton.addEventListener("input", updateColor);
 penSizeButton.addEventListener("input", updatePenSize);
 
-// zoom icon FIX 
+// zoom icon FIX
 // zoomInButton.addEventListener("click", zoomIn);
 // zoomOutButton.addEventListener("click", zoomOut);
 
@@ -210,36 +213,42 @@ penButton.addEventListener("click", function () {
   penSideBar.classList.toggle("hidden");
 });
 
-// close shape side bar
+// Shape Side Bar open & close
 shapeButton.addEventListener("click", function () {
   shapeSideBar.classList.toggle("hidden");
 });
 
+// Shape Side Bar open & close
+backgroundButton.addEventListener("click", function () {
+  backgroundSideBar.classList.toggle("hidden");
+});
 
 
 // background color change
- const bgColors = document.querySelectorAll(".bg-color");
+const bgColors = document.querySelectorAll(".bg-color");
 
- bgColors.forEach((bgColor) => {
-   bgColor.addEventListener("click", () => {
-     const iElement = bgColor.querySelector("i");
-     const color = iElement.style.color;
-     canvas.style.backgroundColor = color;
-   });
- });
+bgColors.forEach((bgColor) => {
+  bgColor.addEventListener("click", () => {
+    const iElement = bgColor.querySelector("i");
+    const color = iElement.style.color;
+    erasorColor = color;
+    canvas.style.backgroundColor = color;
+  });
+});
 
 
- // grid view change
- 
- const grids= ["grid", "grid-line-v", "grid-line-h"]; 
- let gridIndex = 0;
- 
- const bgGrids = document.querySelectorAll(".bg-grid");
+// grid view change
+const grids = ["grid", "grid-line-v", "grid-line-h", "grid-dot"];
+let gridIndex = 0;
 
-     bgGrids.forEach((span) => {
-       span.addEventListener("click", () => {
-         const selectedGrid = grids[gridIndex % grids.length];
-         gridIndex++;
-         canvas.classList.toggle(selectedGrid);
-       });
-     });
+const bgGrids = document.querySelectorAll(".bg-grid");
+
+bgGrids.forEach((span) => {
+  span.addEventListener("click", () => {
+    const selectedGrid = grids[gridIndex];
+    canvas.classList.toggle(selectedGrid);
+
+    gridIndex++;
+    if (gridIndex === 4) return gridIndex = 0;
+  });
+});

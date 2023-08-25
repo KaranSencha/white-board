@@ -68,17 +68,16 @@ canvas {
 	cursor: pointer;
 }
 
-.menu i {
-	font-size: 1.5rem;
+.menu > div .material-symbols-rounded{
+	font-size: 1.8rem;
 	transition: all 0.3s linear;
 	color: var(--lightgray4);
 }
 
-.menu div:hover>i {
+.menu > div:hover>.material-symbols-rounded {
 	color: var(--green);
-	font-size: 1.6rem;
+	font-size: 1.9rem;
 }
-
 
 /* tooltip  */
 .tooltip {
@@ -105,13 +104,15 @@ canvas {
 	border-style: solid;
 	border-color: transparent var(--lightgray1) transparent transparent;
 }
+
 .menu div:hover>.tooltip {
 	visibility: visible;
 	opacity: 1;
 }
 
 #penSelect,
-#shapeSelect, #backgroundSelect {
+#shapeSelect,
+#backgroundSelect {
 	display: flex;
 	position: relative;
 }
@@ -137,18 +138,26 @@ canvas {
 	padding: 5px 0;
 }
 
-.menu .side-bar-pen .icon {
-	padding: 15px;
+
+/* Side Bar  */
+.side-bar {
+	background-color: var(--darkgray) !important;
 }
 
+.side-bar > span {
+	padding: 10px 10px;
+	font-size: 1.5rem !important;
+}
 
-.side-bar-pen i {
-	color: var(--darkgray);
+.side-bar > span:hover {
+	background-color: purple;
+	border-radius: 5px;
 }
 
 .menu .side-bar-size {
 	width: 45%;
 	height: auto;
+	background-color: var(--darkgray);
 	padding-top: 70px;
 	border-radius: 4px;
 }
@@ -158,7 +167,7 @@ canvas {
 	background-color: var(--gray);
 	appearance: none;
 	height: 12px;
-	width: 200px;
+	width: 120%;
 	position: absolute;
 	border-radius: 5px;
 }
@@ -191,46 +200,30 @@ canvas {
 	top: 0;
 }
 
-.menu .side-bar-shape .icon {
-	padding: 10px 15px;
-}
-
-.side-bar-shape .icon:hover {
-	border-radius: 4px;
-	background-color: var(--gray);
-}
-
-.side-bar-shape i {
-	color: var(--darkgray);
-}
 
 /* background side bar  */
-#bgSideBarSelect{
+#bgSideBarSelect {
 	flex-wrap: wrap;
-		width: 200px;
-		gap: 10px;
-		background-color: var(--darkgray);
-		border-radius: 4px;
-		height: auto;
-		padding: 5px 0;
-		position: absolute;
-		left: 90px;
-		bottom: 10px;
+	width: 200px;
+	gap: 12px;
+	background-color: var(--darkgray);
+	border-radius: 4px;
+	height: auto;
+	padding: 12px;
+	position: absolute;
+	left: 90px;
+	bottom: 10px;
 }
 
-
-#bgSideBarSelect .icon {
-	padding: 10px 15px;
+#bgSideBarSelect >span >span {
+width: 10px !important;
+border-radius: 50% !important;
 }
 
-#bgSideBarSelect i {
-		color: var(--lightgray4);
-}
 
 /* Zoom Box - FIX */
 .zoom-box {
 	display: flex;
-	/* display: none; */
 	font-size: 1.3rem;
 	width: 200px;
 	height: 45px;
@@ -265,7 +258,7 @@ canvas {
 	border-radius: 4px;
 }
 
-.zoom-box .icon:active {
+.zoom-box span:active {
 	font-size: 1.2rem;
 }
 
@@ -285,17 +278,21 @@ input[type="color"] {
 /* grid class - background  */
 .grid {
 	background-image: linear-gradient(to right, black 1px, transparent 1px),
-			linear-gradient(to bottom, black 1px, transparent 1px);
-		background-size: 50px 50px;
+		linear-gradient(to bottom, black 1px, transparent 1px);
+	background-size: 50px 50px;
 }
 
 .grid-line-v {
 	background-image: linear-gradient(to right, black 1px, transparent 1px);
-		background-size: 50px 100%;
+	background-size: 50px 100%;
 }
 
 .grid-line-h {
 	background-image: linear-gradient(to bottom, black 1px, transparent 1px);
-		background-size: 100% 50px;
+	background-size: 100% 50px;
 }
 
+.grid-dot {
+	background-image: radial-gradient(circle, black 1px, transparent 1px);
+	background-size: 40px 40px;
+}
