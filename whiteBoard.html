@@ -32,17 +32,16 @@
 
         <!-- Zoom Box -->
         <div class="zoom-box">
-          <!-- minus icon  -->
-          <div class="icon" id="zoomInSelect">
+          <div class="icon" id="zoomOutSelect">
             <span class="material-symbols-rounded">zoom_out</span>
           </div>
           <div class="number">100%</div>
 
-          <div class="icon" id="zoomOutSelect">
+          <div class="icon" id="zoomInSelect">
             <span class="material-symbols-rounded">zoom_in</span>
           </div>
 
-          <div class="icon" id="zoomOutSelect">
+          <div class="icon" id="zoomDefaultSelect">          
             <span class="material-symbols-rounded">zoom_out_map</span>
           </div>
         </div>
@@ -52,33 +51,37 @@
       <div class="menu">
         <!-- cursor -->
         <div id="cursorSelect">
-          <span class="material-symbols-rounded"> arrow_selector_tool </span>
+          <span class="material-symbols-rounded menu-icon">
+            arrow_selector_tool
+          </span>
           <span class="tooltip">cursor</span>
         </div>
 
         <!-- Pen -->
         <div id="penSelect">
-          <span class="material-symbols-rounded"> draw </span>
+          <span class="material-symbols-rounded menu-icon"> draw </span>
           <span class="tooltip">Pensil</span>
 
           <!-- side bar pen -->
-          <div id="bothElement" class="hidden" id="penSideBarSelect">
-            <div class="side-bar side-bar-pen">
-              <span class="material-symbols-rounded" id="penCloseSelect">
+          <div class="hidden" id="penSideBar">
+            <div class="left">
+              <span class="material-symbols-rounded pen-icon" id="penClose">
                 close
               </span>
-              <span class="material-symbols-rounded"> ink_pen </span>
-              <span class="material-symbols-rounded"> ink_highlighter </span>
-              <span class="material-symbols-rounded"> circle </span>
+              <span class="material-symbols-rounded pen-icon"> ink_pen </span>
+              <span class="material-symbols-rounded pen-icon">
+                ink_highlighter
+              </span>
+              <span class="material-symbols-rounded pen-icon"> circle </span>
 
               <!-- color  -->
-              <span id="fillSelect" class="icon">
+              <span id="fillSelect" class="pen-icon">
                 <input type="color" value="#333333" id="colorSelect" />
               </span>
             </div>
 
-            <!-- size selector  -->
-            <div class="side-bar-size" id="penSizeSelect">
+            <!-- Pen Size  -->
+            <div class="right" id="penSizeSelect">
               <input type="range" min="1" value="5" max="30" id="" />
               <div id="penSizeRange">5</div>
             </div>
@@ -87,119 +90,103 @@
 
         <!-- Text icon  -->
         <div id="textSelect">
-          <span class="material-symbols-rounded"> title </span>
+          <span class="material-symbols-rounded menu-icon"> title </span>
           <span class="tooltip">Text</span>
         </div>
 
         <!-- Shape icon  -->
         <div id="shapeSelect">
-          <span class="material-symbols-rounded"> shapes </span>
+          <span class="material-symbols-rounded menu-icon"> shapes </span>
           <span class="tooltip">Shapes</span>
 
           <!-- side bar - shapes -->
-          <div class="side-bar side-bar-shape hidden" id="shapeSideBarSelect">
-            <span class="material-symbols-rounded">crop_square</span>
-            <span class="material-symbols-rounded">pen_size_2</span>
-            <span class="material-symbols-rounded"> open_in_full </span>
-            <span class="material-symbols-rounded"> north_east </span>
-            <span class="material-symbols-rounded"> change_history </span>
-            <span class="material-symbols-rounded"> circle </span>
+          <div class="hidden" id="shapeSideBar">
+            <span class="material-symbols-rounded shape-icon">crop_square</span>
+            <span class="material-symbols-rounded shape-icon">pen_size_2</span>
+            <span class="material-symbols-rounded shape-icon">
+              open_in_full
+            </span>
+            <span class="material-symbols-rounded shape-icon">
+              north_east
+            </span>
+            <span class="material-symbols-rounded shape-icon">
+              change_history
+            </span>
+            <span class="material-symbols-rounded shape-icon"> circle </span>
           </div>
         </div>
 
         <!-- Undo Icon  -->
         <div id="undoSelect">
-          <span class="material-symbols-rounded"> undo </span>
+          <span class="material-symbols-rounded menu-icon"> undo </span>
           <span class="tooltip">Undo</span>
         </div>
 
         <!-- Redo icon  -->
         <div id="redoSelect">
-          <span class="material-symbols-rounded"> redo </span>
+          <span class="material-symbols-rounded menu-icon"> redo </span>
           <span class="tooltip">Redo</span>
         </div>
 
         <!-- Eraser icon  -->
         <div id="erasorSelect">
-          <span class="material-symbols-rounded"> ink_eraser </span>
+          <span class="material-symbols-rounded menu-icon"> ink_eraser </span>
           <span class="tooltip">Eraser</span>
         </div>
 
         <!-- Save icon  -->
         <div id="saveSelect">
-          <span class="material-symbols-rounded"> save </span>
+          <span class="material-symbols-rounded menu-icon"> save </span>
           <span class="tooltip">Save White Board</span>
         </div>
 
         <!-- Delete Icon  -->
         <div id="deleteSelect">
-          <span class="material-symbols-rounded"> delete </span>
+          <span class="material-symbols-rounded menu-icon"> delete </span>
           <span class="tooltip">Delete All</span>
         </div>
 
         <!-- background icon  -->
         <div id="backgroundSelect">
-          <span class="material-symbols-rounded"> background_replace </span>
+          <span class="material-symbols-rounded menu-icon">
+            background_replace
+          </span>
           <span class="tooltip">Change Background view</span>
 
-          <div class="side-bar hidden" id="bgSideBarSelect">
-            <!-- red color  -->
-            <span class="icon bg-color">
-              <span style="color: #333"></span>
-            </span>
+          <div class="hidden" id="backgroundSideBar">
+            <!-- bg color  -->
+            <div class="colors">
+              <span class="bg-color" style="background-color: lightblue;"></span>
+              <span class="bg-color" style="background-color: coral;"></span>
+              <span class="bg-color" style="background-color: pink;"></span>
+              <span class="bg-color" style="background-color: peru;"></span>
+              <span class="bg-color" style="background-color: azure;"></span>
+              <span class="bg-color" style="background-color: burlywood;"></span>
+              <span class="bg-color" style="background-color: darkkhaki;"></span>
+              <span class="bg-color" style="background-color: fuchsia;"></span>
+            </div>
 
-            <!-- blue color  -->
-            <span class="icon bg-color">
-              <span style="color: burlywood"></span>
-            </span>
+            <!-- bg type  -->
+            <div class="type">
+              <!-- grid - both  -->
+              <span class="material-symbols-rounded bg-grid" data-grid-class="grid-both">
+                view_compact
+              </span>
 
-            <!-- purple color  -->
-            <span class="icon bg-color">
-              <span style="color: hotpink"></span>
-            </span>
+              <!-- grid - vertical  -->
+              <span class="material-symbols-rounded bg-grid" data-grid-class="grid-vertical">
+                calendar_view_week
+              </span>
 
-            <!-- green color  -->
-            <span class="icon bg-color">
-              <span style="color: peru"></span>
-            </span>
-
-            <!-- black color  -->
-            <span class="icon bg-color">
-              <span style="color: gray"></span>
-            </span>
-
-            <!-- black color  -->
-            <span class="icon bg-color">
-              <span style="color: burlywood"></span>
-            </span>
-
-            <!-- brown color  -->
-            <span class="icon bg-color">
-              <span style="color: burlywood"></span>
-            </span>
-
-            <!-- light yello color  -->
-            <span class="icon bg-color">
-              <span style="color: lightpink"></span>
-            </span>
-
-            <!-- light yello color  -->
-            <span class="icon bg-color">
-              <span style="background-color: coral"></span>
-            </span>
-
-            <!-- grid  -->
-            <span class="material-symbols-rounded bg-grid"> view_compact </span>
-
-            <!-- grid line vetical -->
-            <span class="material-symbols-rounded bg-grid">
-              calendar_view_week
-            </span>
-
-            <!-- grid line horizontal  -->
-            <span class="material-symbols-rounded bg-grid">
-              table_rows_narrow
-            </span>
+              <!-- grid - horizontal -->
+              <span class="material-symbols-rounded bg-grid" data-grid-class="grid-horizontal">
+                view_compact
+              </span>
+              <!-- grid - none  -->
+              <span class="material-symbols-rounded bg-grid" data-grid-class="grid-dot">
+                table_rows_narrow
+              </span>
+            </div>
           </div>
         </div>
       </div>

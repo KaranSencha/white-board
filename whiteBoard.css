@@ -50,44 +50,43 @@ canvas {
 }
 
 
-/* icons  */
+/* Main Menu  */
 .menu {
 	display: flex;
 	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	padding: 10px 5px;
 	width: 80px;
 	height: 100%;
 	background-color: var(--darkgray);
-}
-
-.menu div {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 100%;
-	height: 100px;
 	cursor: pointer;
 }
 
-.menu > div .material-symbols-rounded{
-	font-size: 1.8rem;
+.menu>div {
+	padding: 10px 15px;
+	border-radius: 0.4rem;
 	transition: all 0.3s linear;
-	color: var(--lightgray4);
 }
 
-.menu > div:hover>.material-symbols-rounded {
-	color: var(--green);
-	font-size: 1.9rem;
+.menu>div:hover {
+	background-color: var(--primary);
 }
 
-/* tooltip  */
+.menu-icon {
+	font-size: 2rem;
+	color: var(--lightgray4)
+}
+
+
+/* Menu tooltip  */
 .tooltip {
 	visibility: hidden;
-	font-size: 1.1rem;
 	width: fit-content;
 	background-color: var(--lightgray1);
 	color: var(--black);
 	border-radius: 6px;
-	padding: 8px 20px;
+	padding: 5px 15px;
 	position: absolute;
 	left: 90px;
 	opacity: 0;
@@ -110,6 +109,7 @@ canvas {
 	opacity: 1;
 }
 
+/* Side Bar Icon  */
 #penSelect,
 #shapeSelect,
 #backgroundSelect {
@@ -117,109 +117,158 @@ canvas {
 	position: relative;
 }
 
-#bothElement {
+/* Pen - Side bar  */
+#penSideBar {
+	display: flex;
 	flex-direction: row;
 	width: 140px;
-	border-radius: 4px;
+	border-radius: 0.4rem;
 	height: auto;
-	align-items: unset;
 	position: absolute;
 	left: 90px;
-	background-color: var(--lightgray2);
+	background-color: var(--darkgray);
 	top: 0;
 }
 
-.menu .side-bar-pen {
-	width: 55%;
+#penSideBar .left {
+	display: flex;
 	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+	width: 55%;
+	gap: 10px;
 	border-radius: 4px;
 	height: auto;
-	border-right: 2px solid var(--lightgray4);
-	padding: 5px 0;
+	padding: 10px 5px;
 }
 
-
-/* Side Bar  */
-.side-bar {
-	background-color: var(--darkgray) !important;
+#penSideBar .pen-icon {
+	border-radius: 0.4rem;
+	padding: 10px 15px;
+	background-color: var(--lightgray1);
 }
 
-.side-bar > span {
-	padding: 10px 10px;
-	font-size: 1.5rem !important;
+input[type="color"] {
+	border-radius: 50%;
+	border: none;
+	width: 23px;
+	height: 22px;
 }
 
-.side-bar > span:hover {
-	background-color: purple;
-	border-radius: 5px;
-}
-
-.menu .side-bar-size {
+#penSideBar .right {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
 	width: 45%;
-	height: auto;
-	background-color: var(--darkgray);
-	padding-top: 70px;
+	gap: 10px;
 	border-radius: 4px;
+	height: auto;
+	padding: 10px 5px;
 }
 
-.side-bar-size input {
+input[type="range"] {
 	transform: rotate(-90deg);
 	background-color: var(--gray);
 	appearance: none;
 	height: 12px;
-	width: 120%;
+	width: 200px;
 	position: absolute;
+	bottom: 37%;
 	border-radius: 5px;
 }
 
-.side-bar-size input::-webkit-slider-thumb {
+input[type="range"]::-webkit-slider-thumb {
 	appearance: none;
 	background-color: #04AA6D;
 	width: 12px;
-	height: 25px;
+	height: 30px;
 	border-radius: 4px;
 	cursor: pointer;
 }
 
 #penSizeRange {
-	transform: translateY(-135%);
-	font-size: 1.4rem;
+	font-size: 1.5rem;
+	position: absolute;
+	border-radius: 0.4rem;
+	padding: 5px 0;
+	text-align: center;
+	width: 52px;
+	background-color: var(--lightgray1);
+	top: 3.5%;
 }
 
-/* side bar shape  */
-.menu .side-bar-shape {
+/* Shape - Side bar  */
+#shapeSideBar {
+	display: flex;
 	flex-wrap: wrap;
-	width: 200px;
+	width: 230px;
+	border-radius: 0.4rem;
+	justify-content: space-around;
+	padding: 15px;
 	gap: 10px;
-	background-color: var(--lightgray4);
-	border-radius: 4px;
 	height: auto;
-	padding: 5px 0;
 	position: absolute;
 	left: 90px;
 	top: 0;
+	background-color: var(--darkgray);
+}
+
+#shapeSideBar .shape-icon {
+	border-radius: 0.4rem;
+	padding: 10px 15px;
+	background-color: var(--lightgray1);
 }
 
 
-/* background side bar  */
-#bgSideBarSelect {
-	flex-wrap: wrap;
-	width: 200px;
-	gap: 12px;
-	background-color: var(--darkgray);
-	border-radius: 4px;
+/* Background - Side bar  */
+#backgroundSideBar {
+	display: flex;
+	flex-direction: row;
+	width: 230px;
+	border-radius: 0.4rem;
 	height: auto;
-	padding: 12px;
+	padding: 15px;
 	position: absolute;
 	left: 90px;
-	bottom: 10px;
+	bottom: 0;
+	background-color: var(--darkgray);
 }
 
-#bgSideBarSelect >span >span {
-width: 10px !important;
-border-radius: 50% !important;
+#backgroundSideBar .colors {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	width: 66%;
+	gap: 10px;
+	border-radius: 4px;
+	height: auto;
 }
 
+.bg-color {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	padding: 10px 15px;
+}
+
+#backgroundSideBar .type {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+	width: 34%;
+	gap: 10px;
+	border-radius: 4px;
+	height: auto;
+}
+
+#backgroundSideBar .bg-grid {
+	font-size: 1.8rem;
+	border-radius: 0.4rem;
+	padding: 5px 10px;
+	background-color: var(--lightgray1);
+}
 
 /* Zoom Box - FIX */
 .zoom-box {
@@ -262,32 +311,26 @@ border-radius: 50% !important;
 	font-size: 1.2rem;
 }
 
-input[type="color"] {
-	border-radius: 50%;
-	border: none;
-	width: 30px;
-	height: 30px;
-	padding: 5px;
-}
 
-/*  Hidden class for all element  */
+
+/*  Hidden class for hide element */
 .hidden {
 	display: none !important;
 }
 
 /* grid class - background  */
-.grid {
+.grid-both {
 	background-image: linear-gradient(to right, black 1px, transparent 1px),
 		linear-gradient(to bottom, black 1px, transparent 1px);
 	background-size: 50px 50px;
 }
 
-.grid-line-v {
+.grid-vertical {
 	background-image: linear-gradient(to right, black 1px, transparent 1px);
 	background-size: 50px 100%;
 }
 
-.grid-line-h {
+.grid-horizontal {
 	background-image: linear-gradient(to bottom, black 1px, transparent 1px);
 	background-size: 100% 50px;
 }
