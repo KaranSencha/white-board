@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 // Constant Variable
 // menu icons
 const cursorButton = document.getElementById("cursorSelect");
@@ -10,18 +10,20 @@ const redoButton = document.getElementById("redoSelect");
 const erasorButton = document.getElementById("erasorSelect");
 const saveButton = document.getElementById("saveSelect");
 const deleteAllButton = document.getElementById("deleteSelect");
-const colorButton = document.getElementById("colorSelect");
-const penSizeButton = document.getElementById("penSizeSelect");
-const closeButton = document.querySelectorAll(".closeIconSelect");
-const penSideBar = document.getElementById("bothElement");
-const penCloseButton = document.getElementById("penCloseSelect");
 const backgroundButton = document.getElementById("backgroundSelect");
-const backgroundSideBar = document.getElementById("bgSideBarSelect");
-const shapeSideBar = document.getElementById("shapeSideBarSelect");
+
+// sideBar icons
+const penColor = document.getElementById("colorSelect");
+const penSize = document.getElementById("penSizeSelect");
+const penCloseButton = document.getElementById("penClose");
+const penSideBar = document.getElementById("penSideBar");
+const shapeSideBar = document.getElementById("shapeSideBar");
+const backgroundSideBar = document.getElementById("backgroundSideBar");
 
 // zoom icons
 const zoomInButton = document.getElementById("zoomInSelect");
 const zoomOutButton = document.getElementById("zoomOutSelect");
+const zoomDefaultButton = document.getElementById("zoomDefaultSelect");
 
 // canvas
 const canvas = document.getElementById("canvasSelect");
@@ -31,7 +33,6 @@ ctx.lineCap = "round";
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
-ctx.lineWidth = 28;
 
 // let Variable
 let isDrawing = false;
@@ -159,12 +160,17 @@ function drawLine(e) {
 
 // ZoomIn function
 function zoomIn() {
-  alert("Zoom In");
+  console.log("Zoom In");
 }
 
 // Zoom out Function
 function zoomOut() {
-  alert("Zoom Out");
+  console.log("Zoom Out");
+}
+
+// Zoom default function
+function zoomDefault() {
+  console.log("Zoom Default");
 }
 
 // SECTION  - addEventListener
@@ -193,13 +199,15 @@ redoButton.addEventListener("click", redo);
 erasorButton.addEventListener("click", toggleEraser);
 saveButton.addEventListener("click", saveAll);
 deleteAllButton.addEventListener("click", clearAll);
-colorButton.addEventListener("input", updateColor);
-penSizeButton.addEventListener("input", updatePenSize);
+penColor.addEventListener("input", updateColor);
+penSize.addEventListener("input", updatePenSize);
 
 // zoom icon FIX
-// zoomInButton.addEventListener("click", zoomIn);
-// zoomOutButton.addEventListener("click", zoomOut);
+zoomInButton.addEventListener("click", zoomIn);
+zoomOutButton.addEventListener("click", zoomOut);
+zoomDefaultButton.addEventListener("click", zoomDefault);
 
+// Side Bar   SECTION
 // close pen side bar
 penCloseButton.addEventListener("click", function () {
   penSideBar.classList.toggle("hidden");
@@ -213,42 +221,41 @@ penButton.addEventListener("click", function () {
   penSideBar.classList.toggle("hidden");
 });
 
-// Shape Side Bar open & close
+// Shape Side Bar (open & close)
 shapeButton.addEventListener("click", function () {
   shapeSideBar.classList.toggle("hidden");
 });
 
-// Shape Side Bar open & close
+// Background Side Bar (open & close)
 backgroundButton.addEventListener("click", function () {
   backgroundSideBar.classList.toggle("hidden");
 });
 
-
-// background color change
-const bgColors = document.querySelectorAll(".bg-color");
+// Change - background color
+const bgColors = document.querySelectorAll(".bg-color"); // Changed the selector to target the individual color spans
 
 bgColors.forEach((bgColor) => {
   bgColor.addEventListener("click", () => {
-    const iElement = bgColor.querySelector("i");
-    const color = iElement.style.color;
+    const color = bgColor.style.backgroundColor;
     erasorColor = color;
     canvas.style.backgroundColor = color;
   });
 });
 
+// Change - background Grid
+const gridIcons = document.querySelectorAll(".bg-grid");
 
-// grid view change
-const grids = ["grid", "grid-line-v", "grid-line-h", "grid-dot"];
-let gridIndex = 0;
+gridIcons.forEach((gridIcon) => {
+  gridIcon.addEventListener("click", () => {
+    const selectedGridClass = gridIcon.getAttribute("data-grid-class");
 
-const bgGrids = document.querySelectorAll(".bg-grid");
-
-bgGrids.forEach((span) => {
-  span.addEventListener("click", () => {
-    const selectedGrid = grids[gridIndex];
-    canvas.classList.toggle(selectedGrid);
-
-    gridIndex++;
-    if (gridIndex === 4) return gridIndex = 0;
+    // Remove existing grid class and set the selected grid class
+    canvas.classList.remove(
+      "grid-both",
+      "grid-vertical",
+      "grid-horizontal",
+      "grid-dot"
+    );
+    canvas.classList.add(selectedGridClass);
   });
 });
