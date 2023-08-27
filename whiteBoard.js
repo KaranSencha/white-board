@@ -120,6 +120,11 @@ function clearAll() {
   undoStack = [];
   redoStack = [];
   actionStack = [];
+
+  const textBoxes = document.querySelectorAll(".text-box");
+  textBoxes.forEach((textBox) => {
+  canvas.parentElement.removeChild(textBox);
+  });
 }
 
 // smooth line function
@@ -192,7 +197,7 @@ penButton.addEventListener("click", () => {
   canvas.addEventListener("mousedown", startDrawing);
   canvas.addEventListener("mousemove", drawLine);
 });
-textButton.addEventListener("click", stopDrawing);
+// textButton.addEventListener("click", stopDrawing);
 shapeButton.addEventListener("click", stopDrawing);
 undoButton.addEventListener("click", undo);
 redoButton.addEventListener("click", redo);
@@ -226,6 +231,13 @@ shapeButton.addEventListener("click", function () {
   shapeSideBar.classList.toggle("hidden");
 });
 
+
+//  document.querySelectorAll(".shape-icon").forEach((shapeicon) => {
+//    shapeicon.addEventListener("click", (event) => {
+//   event.stopPropagation();
+//    });
+//  });
+
 // Background Side Bar (open & close)
 backgroundButton.addEventListener("click", function () {
   backgroundSideBar.classList.toggle("hidden");
@@ -248,14 +260,94 @@ const gridIcons = document.querySelectorAll(".bg-grid");
 gridIcons.forEach((gridIcon) => {
   gridIcon.addEventListener("click", () => {
     const selectedGridClass = gridIcon.getAttribute("data-grid-class");
-
-    // Remove existing grid class and set the selected grid class
     canvas.classList.remove(
       "grid-both",
-      "grid-vertical",
       "grid-horizontal",
       "grid-dot"
     );
     canvas.classList.add(selectedGridClass);
   });
 });
+
+
+
+// text box 
+let isTextMode = false;
+
+textButton.addEventListener("click", () => {
+  isTextMode = true;
+  canvas.removeEventListener("mousedown", startDrawing);
+  canvas.removeEventListener("mousemove", drawLine);
+  stopDrawing();
+  canvas.style.cursor = "text";
+});
+
+canvas.addEventListener("click", (e) => {
+  if (isTextMode) {
+    createTextBox(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
+    isTextMode = false;
+  }
+});
+
+function createTextBox(x, y) {
+  const textBox = document.createElement("div");
+  textBox.className = "text-box";
+  textBox.style.left = x + "px";
+  textBox.style.top = y + "px";
+  canvas.parentElement.appendChild(textBox);
+
+  const input = document.createElement("textarea");
+  input.className = "text-input";
+  textBox.appendChild(input);
+
+  input.focus();
+}
+
+
+// dragable code - old
+
+ let isDragging = false;
+ let activeTextBox = null;
+ let initialX = 0;
+ let initialY = 0;
+
+ canvas.addEventListener("mousedown", (e) => {
+   if (isTextMode) {
+     const x = e.clientX - canvas.offsetLeft;
+     const y = e.clientY - canvas.offsetTop;
+     createTextBox(x, y);
+     isTextMode = false;
+   }
+ });
+
+ canvas.addEventListener("mousemove", (e) => {
+   if (isDragging && activeTextBox) {
+     const newX = e.clientX - initialX;
+     const newY = e.clientY - initialY;
+
+     activeTextBox.style.left = newX + "px";
+     activeTextBox.style.top = newY + "px";
+
+     initialX = e.clientX - newX;
+     initialY = e.clientY - newY;
+   }
+ });
+
+ canvas.addEventListener("mouseup", () => {
+   isDragging = false;
+   activeTextBox = null;
+ });
+
+ document.addEventListener("mousedown", (e) => {
+   if (e.target.classList.contains("text-box")) {
+     isDragging = true;
+     activeTextBox = e.target;
+     initialX = e.clientX - e.target.getBoundingClientRect().left;
+     initialY = e.clientY - e.target.getBoundingClientRect().top;
+   }
+ });
+
+ document.addEventListener("mouseup", () => {
+   isDragging = false;
+   activeTextBox = null;
+ });
