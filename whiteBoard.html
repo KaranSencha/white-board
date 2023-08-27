@@ -7,21 +7,22 @@
     <link rel="shortcut icon" href="favicon-32x32.png" type="image/x-icon" />
 
     <!-- Google Icon - Style Sheet -->
-    <link
+     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
     />
-
-    <!-- Style sheet -->
-    <link rel="stylesheet" href="whiteBoard.css" />
-
+    
+    
     <!-- Google Font  -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap"
-      rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap"
+    rel="stylesheet"
     />
+    
+     <!-- Style sheet -->
+     <link rel="stylesheet" href="whiteBoard.css" />
   </head>
 
   <body>
@@ -51,7 +52,7 @@
       <div class="menu">
         <!-- cursor -->
         <div id="cursorSelect">
-          <span class="material-symbols-rounded menu-icon">
+          <span class="material-symbols-rounded menu-icon ">
             arrow_selector_tool
           </span>
           <span class="tooltip">cursor</span>
@@ -101,7 +102,7 @@
 
           <!-- side bar - shapes -->
           <div class="hidden" id="shapeSideBar">
-            <span class="material-symbols-rounded shape-icon">crop_square</span>
+            <span class="material-symbols-rounded shape-icon not-fill">crop_square</span>
             <span class="material-symbols-rounded shape-icon">pen_size_2</span>
             <span class="material-symbols-rounded shape-icon">
               open_in_full
@@ -109,10 +110,10 @@
             <span class="material-symbols-rounded shape-icon">
               north_east
             </span>
-            <span class="material-symbols-rounded shape-icon">
+            <span class="material-symbols-rounded shape-icon not-fill">
               change_history
             </span>
-            <span class="material-symbols-rounded shape-icon"> circle </span>
+            <span class="material-symbols-rounded shape-icon not-fill"> circle </span>
           </div>
         </div>
 
@@ -169,22 +170,23 @@
             <!-- bg type  -->
             <div class="type">
               <!-- grid - both  -->
-              <span class="material-symbols-rounded bg-grid" data-grid-class="grid-both">
-                view_compact
+              <span class="material-symbols-rounded bg-grid not-fill" data-grid-class="grid-both">
+                grid_4x4
               </span>
-
-              <!-- grid - vertical  -->
-              <span class="material-symbols-rounded bg-grid" data-grid-class="grid-vertical">
-                calendar_view_week
-              </span>
-
+              
               <!-- grid - horizontal -->
-              <span class="material-symbols-rounded bg-grid" data-grid-class="grid-horizontal">
-                view_compact
+              <span class="material-symbols-rounded bg-grid not-fill" data-grid-class="grid-horizontal">
+                view_headline
+              </span>       
+
+              <!-- grid - Dots  -->
+              <span class="material-symbols-rounded bg-grid not-fill" data-grid-class="grid-dot">
+                apps
               </span>
-              <!-- grid - none  -->
-              <span class="material-symbols-rounded bg-grid" data-grid-class="grid-dot">
-                table_rows_narrow
+    
+              <!-- grid - None -->
+              <span class="material-symbols-rounded bg-grid not-fill" data-grid-class="none">
+                check_box_outline_blank
               </span>
             </div>
           </div>
