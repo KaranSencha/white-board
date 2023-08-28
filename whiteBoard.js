@@ -28,13 +28,8 @@ const zoomDefaultButton = document.getElementById("zoomDefaultSelect");
 // canvas
 const canvas = document.getElementById("canvasSelect");
 const ctx = canvas.getContext("2d");
-ctx.lineJoin = "round";
-ctx.lineCap = "round";
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-// let Variable
+// drawline Variable
 let isDrawing = false;
 let isErasing = false;
 let lastX = 0;
@@ -47,6 +42,33 @@ let undoStack = [];
 let redoStack = [];
 let actionStack = [];
 let points = [];
+
+// Text Box
+let isTextMode = false;
+let isOnBorder = false;
+let isDragging = false;
+let activeTextBox = null;
+let initialX = 0;
+let initialY = 0;
+
+// Shape icon
+const squareShape = document.getElementById("squareShape");
+const circleShape = document.getElementById("circleShape");
+const triangleShape = document.getElementById("triangleShape");
+const lineShape = document.getElementById("lineShape");
+const arrowShape = document.getElementById("arrowShape");
+const arrow2Shape = document.getElementById("arrow2Shape");
+
+// Box Variable
+let isBoxMode = false;
+let borderOffset = 8;
+let startX, startY;
+
+// canvas by default values
+ctx.lineJoin = "round";
+ctx.lineCap = "round";
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
 // SECTION  - Functions
 // Stop Drawing Function
@@ -123,7 +145,7 @@ function clearAll() {
 
   const textBoxes = document.querySelectorAll(".text-box");
   textBoxes.forEach((textBox) => {
-  canvas.parentElement.removeChild(textBox);
+    canvas.parentElement.removeChild(textBox);
   });
 }
 
@@ -154,6 +176,7 @@ function drawLine(e) {
   points.push({ x, y });
 
   // call - smoothline function
+  // canvas.addEventListener("mousedown", function () {
   drawSmoothLine(points);
 
   // undo & redo
@@ -179,8 +202,23 @@ function zoomDefault() {
 }
 
 // SECTION  - addEventListener
-//  cursor
+//  Mouse EventListener
 canvas.addEventListener("mousedown", startDrawing);
+
+canvas.addEventListener("mouseout", function () {
+  points = [];
+});
+
+canvas.addEventListener("mouseenter", function (event) {
+  if (event.buttons === 1) {
+    startDrawing(event);
+    canvas.addEventListener("mousemove", drawLine);
+  } else {
+    stopDrawing();
+    points = [];
+  }
+});
+
 canvas.addEventListener("mousemove", drawLine);
 canvas.addEventListener("mouseup", function () {
   stopDrawing();
@@ -192,10 +230,12 @@ cursorButton.addEventListener("click", () => {
   canvas.removeEventListener("mousedown", startDrawing);
   canvas.removeEventListener("mousemove", drawLine);
   stopDrawing();
+  isBoxMode = false;
 });
 penButton.addEventListener("click", () => {
   canvas.addEventListener("mousedown", startDrawing);
   canvas.addEventListener("mousemove", drawLine);
+  isBoxMode = false;
 });
 // textButton.addEventListener("click", stopDrawing);
 shapeButton.addEventListener("click", stopDrawing);
@@ -231,13 +271,6 @@ shapeButton.addEventListener("click", function () {
   shapeSideBar.classList.toggle("hidden");
 });
 
-
-//  document.querySelectorAll(".shape-icon").forEach((shapeicon) => {
-//    shapeicon.addEventListener("click", (event) => {
-//   event.stopPropagation();
-//    });
-//  });
-
 // Background Side Bar (open & close)
 backgroundButton.addEventListener("click", function () {
   backgroundSideBar.classList.toggle("hidden");
@@ -260,19 +293,24 @@ const gridIcons = document.querySelectorAll(".bg-grid");
 gridIcons.forEach((gridIcon) => {
   gridIcon.addEventListener("click", () => {
     const selectedGridClass = gridIcon.getAttribute("data-grid-class");
-    canvas.classList.remove(
-      "grid-both",
-      "grid-horizontal",
-      "grid-dot"
-    );
+    canvas.classList.remove("grid-both", "grid-horizontal", "grid-dot");
     canvas.classList.add(selectedGridClass);
   });
 });
 
+// Add Active class in Menu icon
 
+const menuIcons = document.querySelectorAll(".menu-icon");
+menuIcons.forEach((icon) => {
+  icon.addEventListener("click", function () {
+    menuIcons.forEach((otherIcon) => {
+      otherIcon.parentElement.classList.remove("active");
+    });
+    icon.parentElement.classList.add("active");
+  });
+});
 
-// text box 
-let isTextMode = false;
+// Text Box
 
 textButton.addEventListener("click", () => {
   isTextMode = true;
@@ -301,53 +339,98 @@ function createTextBox(x, y) {
   textBox.appendChild(input);
 
   input.focus();
+
+  textBox.addEventListener("mousedown", (e) => {
+    isOnBorder = isCursorOnBorder(e, textBox);
+    if (isOnBorder) {
+      isDragging = true;
+      activeTextBox = textBox;
+      initialX = e.clientX - textBox.getBoundingClientRect().left;
+      initialY = e.clientY - textBox.getBoundingClientRect().top;
+    }
+  });
+
+  document.addEventListener("mousemove", (e) => {
+    if (isDragging && activeTextBox) {
+      const newX = e.clientX - initialX;
+      const newY = e.clientY - initialY;
+
+      activeTextBox.style.left = newX + "px";
+      activeTextBox.style.top = newY + "px";
+
+      initialX = e.clientX - newX;
+      initialY = e.clientY - newY;
+    }
+  });
+
+  document.addEventListener("mouseup", () => {
+    isDragging = false;
+    activeTextBox = null;
+    isOnBorder = false;
+  });
+
+  function isCursorOnBorder(e, element) {
+    const rect = element.getBoundingClientRect();
+    const cursorX = e.clientX - rect.left;
+    const cursorY = e.clientY - rect.top;
+
+    return (
+      cursorX < borderOffset ||
+      cursorX > rect.width - borderOffset ||
+      cursorY < borderOffset ||
+      cursorY > rect.height - borderOffset
+    );
+  }
 }
 
+// add event listener to Square box
+squareShape.addEventListener("click", function () {
+  isBoxMode = true;
+  canvas.removeEventListener("mousedown", startDrawing);
+  canvas.removeEventListener("mousemove", drawLine);
+  stopDrawing();
+  canvas.style.cursor = "pointer";
+});
 
-// dragable code - old
+// draw box function
+function drawBox(x, y, width, height) {
+  ctx.strokeRect(x, y, width, height);
+}
 
- let isDragging = false;
- let activeTextBox = null;
- let initialX = 0;
- let initialY = 0;
+function drawAllBoxes() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  points.forEach((box) => {
+    drawBox(box.x, box.y, box.width, box.height);
+  });
+}
 
- canvas.addEventListener("mousedown", (e) => {
-   if (isTextMode) {
-     const x = e.clientX - canvas.offsetLeft;
-     const y = e.clientY - canvas.offsetTop;
-     createTextBox(x, y);
-     isTextMode = false;
-   }
- });
+canvas.addEventListener("mousedown", function (event) {
+  if (event.target === canvas) {
+    isBoxMode = true;
+    startX = event.clientX - canvas.getBoundingClientRect().left;
+    startY = event.clientY - canvas.getBoundingClientRect().top;
+  }
+});
 
- canvas.addEventListener("mousemove", (e) => {
-   if (isDragging && activeTextBox) {
-     const newX = e.clientX - initialX;
-     const newY = e.clientY - initialY;
+canvas.addEventListener("mousemove", function (event) {
+  if (isBoxMode) {
+    const x = event.clientX - canvas.getBoundingClientRect().left;
+    const y = event.clientY - canvas.getBoundingClientRect().top;
+    const width = x - startX;
+    const height = y - startY;
+    drawAllBoxes();
+    drawBox(startX, startY, width, height);
+  }
+});
 
-     activeTextBox.style.left = newX + "px";
-     activeTextBox.style.top = newY + "px";
-
-     initialX = e.clientX - newX;
-     initialY = e.clientY - newY;
-   }
- });
-
- canvas.addEventListener("mouseup", () => {
-   isDragging = false;
-   activeTextBox = null;
- });
-
- document.addEventListener("mousedown", (e) => {
-   if (e.target.classList.contains("text-box")) {
-     isDragging = true;
-     activeTextBox = e.target;
-     initialX = e.clientX - e.target.getBoundingClientRect().left;
-     initialY = e.clientY - e.target.getBoundingClientRect().top;
-   }
- });
-
- document.addEventListener("mouseup", () => {
-   isDragging = false;
-   activeTextBox = null;
- });
+canvas.addEventListener("mouseup", function (event) {
+  if (isBoxMode) {
+    const x = event.clientX - canvas.getBoundingClientRect().left;
+    const y = event.clientY - canvas.getBoundingClientRect().top;
+    const width = x - startX;
+    const height = y - startY;
+    points.push({ x: startX, y: startY, width, height });
+    drawAllBoxes();
+  }
+  isBoxMode = false;
+});

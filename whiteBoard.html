@@ -7,22 +7,21 @@
     <link rel="shortcut icon" href="favicon-32x32.png" type="image/x-icon" />
 
     <!-- Google Icon - Style Sheet -->
-     <link
+    <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
     />
-    
-    
+
     <!-- Google Font  -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap"
-    rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
     />
-    
-     <!-- Style sheet -->
-     <link rel="stylesheet" href="whiteBoard.css" />
+
+    <!-- Style sheet -->
+    <link rel="stylesheet" href="whiteBoard.css" />
   </head>
 
   <body>
@@ -42,7 +41,7 @@
             <span class="material-symbols-rounded">zoom_in</span>
           </div>
 
-          <div class="icon" id="zoomDefaultSelect">          
+          <div class="icon" id="zoomDefaultSelect">
             <span class="material-symbols-rounded">zoom_out_map</span>
           </div>
         </div>
@@ -52,7 +51,7 @@
       <div class="menu">
         <!-- cursor -->
         <div id="cursorSelect">
-          <span class="material-symbols-rounded menu-icon ">
+          <span class="material-symbols-rounded menu-icon">
             arrow_selector_tool
           </span>
           <span class="tooltip">cursor</span>
@@ -102,18 +101,33 @@
 
           <!-- side bar - shapes -->
           <div class="hidden" id="shapeSideBar">
-            <span class="material-symbols-rounded shape-icon not-fill">crop_square</span>
-            <span class="material-symbols-rounded shape-icon">pen_size_2</span>
-            <span class="material-symbols-rounded shape-icon">
+            <span
+              class="material-symbols-rounded shape-icon not-fill"
+              id="squareShape"
+              >crop_square</span
+            >
+            <span class="material-symbols-rounded shape-icon" id="lineShape"
+              >pen_size_2</span
+            >
+            <span class="material-symbols-rounded shape-icon" id="arrow2Shape">
               open_in_full
             </span>
-            <span class="material-symbols-rounded shape-icon">
+            <span class="material-symbols-rounded shape-icon" id="arrowShape">
               north_east
             </span>
-            <span class="material-symbols-rounded shape-icon not-fill">
+
+            <span
+              class="material-symbols-rounded shape-icon not-fill"
+              id="triangleShape"
+            >
               change_history
             </span>
-            <span class="material-symbols-rounded shape-icon not-fill"> circle </span>
+            <span
+              class="material-symbols-rounded shape-icon not-fill"
+              id="circleShape"
+            >
+              circle
+            </span>
           </div>
         </div>
 
@@ -157,35 +171,47 @@
           <div class="hidden" id="backgroundSideBar">
             <!-- bg color  -->
             <div class="colors">
-              <span class="bg-color" style="background-color: lightblue;"></span>
-              <span class="bg-color" style="background-color: coral;"></span>
-              <span class="bg-color" style="background-color: pink;"></span>
-              <span class="bg-color" style="background-color: peru;"></span>
-              <span class="bg-color" style="background-color: azure;"></span>
-              <span class="bg-color" style="background-color: burlywood;"></span>
-              <span class="bg-color" style="background-color: darkkhaki;"></span>
-              <span class="bg-color" style="background-color: fuchsia;"></span>
+              <span class="bg-color" style="background-color: lightblue"></span>
+              <span class="bg-color" style="background-color: coral"></span>
+              <span class="bg-color" style="background-color: pink"></span>
+              <span class="bg-color" style="background-color: peru"></span>
+              <span class="bg-color" style="background-color: azure"></span>
+              <span class="bg-color" style="background-color: burlywood"></span>
+              <span class="bg-color" style="background-color: darkkhaki"></span>
+              <span class="bg-color" style="background-color: fuchsia"></span>
             </div>
 
             <!-- bg type  -->
             <div class="type">
               <!-- grid - both  -->
-              <span class="material-symbols-rounded bg-grid not-fill" data-grid-class="grid-both">
+              <span
+                class="material-symbols-rounded bg-grid not-fill"
+                data-grid-class="grid-both"
+              >
                 grid_4x4
               </span>
-              
+
               <!-- grid - horizontal -->
-              <span class="material-symbols-rounded bg-grid not-fill" data-grid-class="grid-horizontal">
+              <span
+                class="material-symbols-rounded bg-grid not-fill"
+                data-grid-class="grid-horizontal"
+              >
                 view_headline
-              </span>       
+              </span>
 
               <!-- grid - Dots  -->
-              <span class="material-symbols-rounded bg-grid not-fill" data-grid-class="grid-dot">
+              <span
+                class="material-symbols-rounded bg-grid not-fill"
+                data-grid-class="grid-dot"
+              >
                 apps
               </span>
-    
+
               <!-- grid - None -->
-              <span class="material-symbols-rounded bg-grid not-fill" data-grid-class="none">
+              <span
+                class="material-symbols-rounded bg-grid not-fill"
+                data-grid-class="none"
+              >
                 check_box_outline_blank
               </span>
             </div>
